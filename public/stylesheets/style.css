@@ -1,0 +1,17 @@
+.circle {
+  background-color: gray;
+  border: 1px solid;
+  border-radius:999em;
+  width: 20px;
+  height: 20px;
+}
+
+.col-12{
+  width: 50vw;
+  text-align: center;
+}
+
+.row {
+  justify-content: center;
+}
+
