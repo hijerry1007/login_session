@@ -20,8 +20,15 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const userName = verifyAccount(req.body)
-  res.render('verify', { userName: userName })
+  const errorMsg = verifyAccount(req.body).errorMsg
+  const loginStatus = verifyAccount(req.body).loginStatus
+  if (loginStatus === 'verified') {
+    const user = verifyAccount(req.body).verifiedAcct
+    const userName = user[0].firstName
+    res.render('verify', { userName: userName })
+  }
+
+  res.render('index', { errorMsg: errorMsg })
 })
 
 app.listen(port, () => {

@@ -1,6 +1,5 @@
 function verify(input) {
 
-  console.log(input)
   const users = [
     {
       firstName: 'Tony',
@@ -29,26 +28,20 @@ function verify(input) {
     }
   ]
 
-  // show feedback
-  let feedback = ''
+  let loginStatus = ''
+  let errorMsg = ``
+  let verifiedAcct = users.filter(user => user.email === input.email && user.password === input.password)
 
-  // verify email and password
-  for (let i = 0; i < users.length; i++) {
-    if (input.email === users[i].email && input.password === users[i].password) {
-      feedback += `Welcome Back! ${users[i].firstName}!`
-    }
-    else {
-      continue
-    }
-  }
-
-  if (feedback.length === 0) {
-    return `Username/Password 錯誤`
+  if (verifiedAcct.length > 0) {
+    loginStatus = 'verified'
+    return { loginStatus, verifiedAcct, errorMsg }
   }
   else {
-    return feedback
+    loginStatus = 'false'
+    verifiedAcct = []
+    errorMsg = `帳號或密碼錯誤!`
+    return { loginStatus, verifiedAcct, errorMsg }
   }
-  console.log('verify!')
 }
 
 // set verifyAccount function
